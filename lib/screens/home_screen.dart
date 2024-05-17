@@ -1,9 +1,13 @@
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_jobs_app/contents.dart';
+import 'package:flutter_jobs_app/screens/blog_screen.dart';
 import 'package:flutter_jobs_app/screens/change_password_screen.dart';
 import 'package:flutter_jobs_app/screens/freelancer_screen.dart';
 import 'package:flutter_jobs_app/screens/home_%20body_screen.dart';
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:flutter_jobs_app/screens/schedule_screen.dart';
+import 'package:flutter_jobs_app/widgets/custom_floating_button.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,11 +22,13 @@ class _HomeScreenState extends State<HomeScreen> {
   PageController _pageController = PageController(initialPage: 0);
 
   List<IconData> _iconOptions = [
-    Icons.home,
-    Icons.bar_chart,
-    Icons.shopping_bag,
-    Icons.settings,
+    FontAwesomeIcons.house,
+    FontAwesomeIcons.house,
+    FontAwesomeIcons.house,
+    FontAwesomeIcons.house,
+    FontAwesomeIcons.house,
   ];
+  List<String> _titles = ['Home', 'Calendar', '', 'Saved', 'My Account'];
 
   @override
   void dispose() {
@@ -56,10 +62,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: FreeLancerScreen(),
               ),
               Container(
-                child: HomeBodyScreen(),
+                child: ChangePasswordScreen(),
               ),
               Container(
-                child: ChangePasswordScreen(),
+                child: ScheduleScreen(),
+              ),
+              Container(
+                child: BlogScreen(),
               ),
             ],
           ),
@@ -81,30 +90,49 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(20),
-            bottomRight: Radius.circular(20),
-          ),
+          borderRadius: BorderRadius.circular(20),
           child: AnimatedBottomNavigationBar.builder(
             itemCount: _iconOptions.length,
-            height: 70,
+            height: 100,
             tabBuilder: (int index, bool isActive) {
-              final color = isActive ? Colors.blue : Colors.white;
+              final color = isActive ? blue : grey;
               final iconSize = isActive ? 42.0 : 30.0;
               iconPadding = isActive ? 12 : 20;
               return Column(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: iconPadding),
-                    child: Icon(
-                      _iconOptions[index],
-                      size: iconSize,
-                      color: color,
-                    ),
-                  ),
+                  index != 2
+                      ? Padding(
+                          padding: EdgeInsets.only(top: iconPadding),
+                          child: Column(
+                            children: [
+                              FaIcon(
+                                _iconOptions[index],
+                                size: iconSize,
+                                color: color,
+                              ),
+                              Text(
+                                _titles[index],
+                                style: TextStyle(color: color),
+                              ),
+                            ],
+                          ),
+                        )
+                      : CustomFloatingButton(
+                          icon: _iconOptions[index],
+                          function: () {
+                            setState(() {
+                              _currentIndex = index;
+                              _pageController.animateToPage(
+                                index,
+                                duration: Duration(milliseconds: 300),
+                                curve: Curves.easeInOut,
+                              );
+                            });
+                          },
+                        )
                 ],
               );
             },
