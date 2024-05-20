@@ -77,7 +77,6 @@ class FreeLancerScreen extends StatelessWidget {
                         height: MediaQuery.of(context).size.height * 0.7,
                         child: ListView.builder(
                           itemBuilder: (context, index) {
-                            int i3 = index % 3;
                             return Padding(
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 10, horizontal: 10),
@@ -87,16 +86,12 @@ class FreeLancerScreen extends StatelessWidget {
                                   height: 200,
                                   width: 370,
                                   decoration: BoxDecoration(
-                                      color: kMainColor,
+                                      color: Color(0xffE0EBFC),
                                       border: Border.all(
-                                        width: 5,
-                                        color: i3 == 0
-                                            ? Colors.amber
-                                            : i3 == 1
-                                                ? Colors.green
-                                                : Colors.pink,
+                                        width: 4,
+                                        color: Color(0xff00ACFF),
                                       ),
-                                      borderRadius: BorderRadius.circular(30)),
+                                      borderRadius: BorderRadius.circular(30),),
                                   child: Column(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,

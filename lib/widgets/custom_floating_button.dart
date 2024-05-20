@@ -29,11 +29,13 @@ class _CustomFloatingButtonState extends State<CustomFloatingButton> {
       child: new RawMaterialButton(
         shape: new CircleBorder(),
         elevation: 0.0,
-        child: Icon(
-          widget.icon,
-          color: kMainColor,
-          size: 40,
-          weight: 20,
+        child: Center(
+          child: Icon(
+            widget.icon,
+            color: kMainColor,
+            size: 30,
+            weight: 20,
+          ),
         ),
         onPressed: widget.function,
       ),

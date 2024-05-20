@@ -292,14 +292,13 @@ class _HomeBodyScreenState extends State<HomeBodyScreen> {
                         child: Container(
                           width: 160,
                           decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [
-                                    Color.fromRGBO(166, 196, 255, 1),
-                                    Color.fromRGBO(65, 94, 153, 1)
-                                  ]),
-                              borderRadius: BorderRadius.circular(20)),
+                            color: Color(0xffE0EBFC),
+                            border: Border.all(
+                              width: 4,
+                              color: Color(0xff00ACFF),
+                            ),
+                            borderRadius: BorderRadius.circular(30),
+                          ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -351,7 +350,6 @@ class _HomeBodyScreenState extends State<HomeBodyScreen> {
     );
   }
 }
-
 
 class BorderContainer extends StatelessWidget {
   const BorderContainer({
