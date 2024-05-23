@@ -23,12 +23,12 @@ class _HomeBodyScreenState extends State<HomeBodyScreen> {
         backgroundColor: kMainColor,
       ),
       body: Stack(children: [
-        Image.asset(
-          'images/Rectangle 4307.png',
-          fit: BoxFit.fill,
-          height: double.infinity,
-          width: double.infinity,
-        ),
+        //   Image.asset(
+        //     'images/Rectangle 4307.png',
+        //     fit: BoxFit.fill,
+        //     height: double.infinity,
+        //     width: double.infinity,
+        //   ),
         Padding(
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
             child: SingleChildScrollView(

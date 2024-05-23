@@ -6,6 +6,7 @@ import 'package:flutter_jobs_app/screens/change_password_screen.dart';
 import 'package:flutter_jobs_app/screens/freelancer_screen.dart';
 import 'package:flutter_jobs_app/screens/home_%20body_screen.dart';
 import 'package:flutter_jobs_app/screens/schedule_screen.dart';
+import 'package:flutter_jobs_app/widgets/background.dart';
 import 'package:flutter_jobs_app/widgets/custom_floating_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -62,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: FreeLancerScreen(),
               ),
               Container(
-                child: ChangePasswordScreen(),
+                child: BlogScreen(),
               ),
               Container(
                 child: ScheduleScreen(),
@@ -169,6 +170,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
+       
+       
         ],
       ),
     );
