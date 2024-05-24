@@ -29,80 +29,86 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               child: SafeArea(
                 child: Form(
                   key: formkey,
-                  child: Column(
-                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.arrow_back_ios,
-                                color: kMainColor,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Text(
-                          "إنشاء كلمة مرور جديدة",
-                          style: TextStyle(
-                              color: kMainColor,
-                              fontSize: 26,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 16, bottom: 40),
-                          child: Image.asset(
-                            'images/Frame1.png',
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 10),
-                          child: buildTextField(
-                            pass: pass,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 10),
-                          child: buildTextField(
-                            pass: pass,
-                          ),
-                        ),
-                        speech("تتكون من حروف وارقام ورموز"),
-                        speech("تتكون بحد اقصى 12 حرف اورقم اورمز"),
-                        speech("تختلف بشكل ملحوظ عن كلمات المرور السابقة"),
-                        speech(
-                            "من السهل عليك تذكره ولكن يصعب على الآخرين تخمينه"),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.055,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            if (formkey.currentState!.validate()) {
-                              bottomSheet(context);
-                            }
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 6),
-                            child: Container(
-                              height: 60,
-                              child: Center(
-                                child: Text(
-                                  "تغيير",
-                                  style: TextStyle(fontSize: 20),
+                  child: Container(
+                    child: Column(
+                        // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.arrow_back_ios,
+                                  color: kMainColor,
                                 ),
                               ),
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                  color: kMainColor,
-                                  borderRadius: BorderRadius.circular(10)),
+                            ],
+                          ),
+                          Text(
+                            "إنشاء كلمة مرور جديدة",
+                            style: TextStyle(
+                                color: kMainColor,
+                                fontSize: 26,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 16, bottom: 40),
+                            child: Image.asset(
+                              'images/Frame1.png',
                             ),
                           ),
-                        ),
-                      ]),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 10),
+                            child: buildTextField(
+                              pass: pass,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 10),
+                            child: buildTextField(
+                              pass: pass,
+                            ),
+                          ),
+                          speech("تتكون من حروف وارقام ورموز"),
+                          speech("تتكون بحد اقصى 12 حرف اورقم اورمز"),
+                          speech("تختلف بشكل ملحوظ عن كلمات المرور السابقة"),
+                          speech(
+                              "من السهل عليك تذكره ولكن يصعب على الآخرين تخمينه"),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.055,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 40.0),
+                            child: InkWell(
+                              onTap: () {
+                                if (formkey.currentState!.validate()) {
+                                  bottomSheet(context);
+                                }
+                              },
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 6),
+                                child: Container(
+                                  height: 60,
+                                  child: Center(
+                                    child: Text(
+                                      "تغيير",
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                  ),
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                      color: kMainColor,
+                                      borderRadius: BorderRadius.circular(10)),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ]),
+                  ),
                 ),
               ),
             ),

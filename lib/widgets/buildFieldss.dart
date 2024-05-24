@@ -20,9 +20,13 @@ class buildFields extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(8.0),
             child: TextFormField(
+              onFieldSubmitted: (value) {
+                _controllers[index].text =value;
+              },
+              textAlign: TextAlign.center,
               validator: (value) {
                 if (value!.isEmpty) {
-                  return "هذا الحقل مطلوب ";
+                  return "";
                 } else {
                   return null;
                 }
@@ -44,8 +48,8 @@ class buildFields extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
               decoration: const InputDecoration(
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+                // contentPadding:
+                //     EdgeInsets.symmetric(horizontal: 18, vertical: 8),
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                     borderSide: BorderSide(

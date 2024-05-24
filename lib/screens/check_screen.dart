@@ -1,7 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_jobs_app/blocs/forget_bloc/forget_password_bloc.dart';
 import 'package:flutter_jobs_app/contents.dart';
+import 'package:flutter_jobs_app/screens/change_password_screen.dart';
+import 'package:flutter_jobs_app/screens/home_screen.dart';
 import 'package:flutter_jobs_app/widgets/buildFieldss.dart';
 
 class CheckScreen extends StatefulWidget {
@@ -23,6 +27,7 @@ class _CheckScreenState extends State<CheckScreen> {
   final formkey = GlobalKey<FormState>();
   int _seconds = 59;
   Timer? _timer;
+  String inputVCode = '';
   @override
   void dispose() {
     for (var controller in _controllers) {
@@ -33,11 +38,12 @@ class _CheckScreenState extends State<CheckScreen> {
     }
     _timer?.cancel();
     super.dispose();
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    // final String vCode = ModalRoute.of(context)!.settings.arguments as String;
+
     return Scaffold(
       body: Form(
         key: formkey,
@@ -81,19 +87,19 @@ class _CheckScreenState extends State<CheckScreen> {
                           'images/Frame.png',
                         ),
                       ),
-                      Text(
-                        "       ادخل رمز التحقق الذي وصلك على الرقم المسجل لدينا",
-                        style: TextStyle(fontSize: 18, color: kMainColor),
-                        textAlign: TextAlign.center,
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(top: 5, bottom: 30),
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          "01202772849 ",
-                          style: TextStyle(color: kMainColor),
-                        ),
-                      ),
+                      // Text(
+                      //   "       ادخل رمز التحقق الذي وصلك على الرقم المسجل لدينا",
+                      //   style: TextStyle(fontSize: 18, color: kMainColor),
+                      //   textAlign: TextAlign.center,
+                      // ),
+                      // Container(
+                      //   padding: EdgeInsets.only(top: 5, bottom: 30),
+                      //   alignment: Alignment.centerRight,
+                      //   child: Text(
+                      //     "01202772849 ",
+                      //     style: TextStyle(color: kMainColor),
+                      //   ),
+                      // ),
                       buildFields(
                           controllers: _controllers, focusNodes: _focusNodes),
                       SizedBox(
@@ -123,10 +129,32 @@ class _CheckScreenState extends State<CheckScreen> {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.1,
                       ),
+                      BlocListener<ForgetPasswordBloc, ForgetPasswordState>(
+                        listener: (context, state) {
+                          if (state is CorrectVCode) {
+                            Navigator.of(context).pushReplacementNamed(
+                              ChangePasswordScreen.id,
+                            );
+                          } else if (state is WrongVCode) {
+                            inputVCode = '';
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Your code is Wrong')));
+                          }
+                        },
+                        child: Container(),
+                      ),
                       InkWell(
                         onTap: () {
                           if (formkey.currentState!.validate()) {
                             startTimer();
+
+                            for (var controller in _controllers) {
+                              inputVCode += controller.text;
+                            }
+
+                            BlocProvider.of<ForgetPasswordBloc>(context)
+                                .add(CheckVCodeEvent(vCode: inputVCode));
+                            print('====================Add Event');
                           }
                         },
                         child: Container(
