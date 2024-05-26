@@ -45,7 +45,8 @@ dependencies:
   flutter_bloc: ^8.1.5
   shared_preferences: ^2.2.3
   equatable: ^2.0.5
-  
+  dio: ^5.4.2+1
+  get_it: ^7.6.7
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -71,6 +72,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -83,6 +85,20 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+
+  fonts:
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/Cairo-VariableFont_slnt,wght.ttf
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+    - family: CircularStd
+      fonts:
+        - asset: assets/fonts/CircularStd-Medium.otf 
+    - family: Tajawal
+      fonts:
+        - asset: assets/fonts/Tajawal-Regular.ttf  
   # fonts:
   #   - family: Schyler
   #     fonts:

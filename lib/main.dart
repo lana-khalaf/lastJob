@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_jobs_app/blocs/forget_bloc/forget_password_bloc.dart';
+import 'package:flutter_jobs_app/config.dart';
 import 'package:flutter_jobs_app/contents.dart';
 import 'package:flutter_jobs_app/screens/blog_screen.dart';
 import 'package:flutter_jobs_app/screens/change_password_screen.dart';
@@ -18,7 +19,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
-
+  init();
   runApp(MyApp());
 }
 
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        
         debugShowCheckedModeBanner: false,
         themeMode: ThemeMode.dark,
         theme: ThemeData(
