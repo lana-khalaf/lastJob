@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_jobs_app/contents.dart';
 
-
 class buildTextField extends StatefulWidget {
-   buildTextField({
+  buildTextField({
     Key? key,
-    this.pass,
+    required this.pass,
+    required this.controller,
+    required this.hintText,
   }) : super(key: key);
-   String? pass;
+  String? pass;
+  String? hintText;
+  final TextEditingController controller;
   @override
   State<buildTextField> createState() => _buildTextFieldState();
 }
@@ -22,7 +25,7 @@ class _buildTextFieldState extends State<buildTextField> {
     return TextFormField(
       textDirection: TextDirection.rtl,
       obscureText: invisiblePassword,
-      validator: widget.pass==null
+      validator: widget.pass == null
           ? (data) {
               if (data!.isEmpty) {
                 return "Required Field";
@@ -52,6 +55,9 @@ class _buildTextFieldState extends State<buildTextField> {
                 return null;
               }
             },
+      onFieldSubmitted: (value) {
+        widget.controller.text = value;
+      },
       showCursor: false,
       enableInteractiveSelection: false,
       keyboardType: TextInputType.visiblePassword,
@@ -62,7 +68,9 @@ class _buildTextFieldState extends State<buildTextField> {
         fontWeight: FontWeight.w500,
       ),
       decoration: InputDecoration(
-        prefixIcon: Padding(
+        hintText: widget.hintText,
+        hintStyle: TextStyle(color: Colors.white),
+        suffixIcon: Padding(
             padding: EdgeInsets.symmetric(
               horizontal: 10,
             ),

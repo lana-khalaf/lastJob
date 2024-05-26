@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_jobs_app/blocs/forget_bloc/forget_password_bloc.dart';
 import 'package:flutter_jobs_app/contents.dart';
+import 'package:flutter_jobs_app/screens/home_screen.dart';
 import 'package:flutter_jobs_app/widgets/buildField.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
@@ -12,6 +17,9 @@ class ChangePasswordScreen extends StatefulWidget {
 class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   final formkey = GlobalKey<FormState>();
   var pass;
+  final TextEditingController passController = TextEditingController();
+  final TextEditingController confirmPassController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,15 +69,25 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 10),
-                            child: buildTextField(
-                              pass: pass,
+                            child: Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: buildTextField(
+                                pass: pass,
+                                hintText: 'كلمة المرور',
+                                controller: passController,
+                              ),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 10),
-                            child: buildTextField(
-                              pass: pass,
+                            child: Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: buildTextField(
+                                pass: pass,
+                                hintText: 'تأكيد كلمة المرور',
+                                controller: confirmPassController,
+                              ),
                             ),
                           ),
                           speech("تتكون من حروف وارقام ورموز"),
@@ -80,29 +98,54 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.055,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 40.0),
-                            child: InkWell(
-                              onTap: () {
-                                if (formkey.currentState!.validate()) {
-                                  bottomSheet(context);
-                                }
-                              },
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 6),
-                                child: Container(
-                                  height: 60,
-                                  child: Center(
-                                    child: Text(
-                                      "تغيير",
-                                      style: TextStyle(fontSize: 20),
+                          BlocListener<ForgetPasswordBloc, ForgetPasswordState>(
+                            listener: (context, state) {
+                              print('=================$state');
+                              if (state is PasswordChanged) {
+                                // ScaffoldMessenger.of(context).showSnackBar(
+                                //     SnackBar(content: Text('hala')));
+                                bottomSheet(context);
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text('Password Not changed')));
+                              }
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 40.0),
+                              child: InkWell(
+                                onTap: () {
+                                  if (formkey.currentState!.validate()) {
+                                    // bottomSheet(context);
+                                    BlocProvider.of<ForgetPasswordBloc>(context)
+                                        .add(ChangePassword(
+                                      newPass: passController.text,
+                                      confirmPass: confirmPassController.text,
+                                    ));
+                                    print('====================Add Event');
+                                    print(
+                                        '====================${passController.text}');
+                                    print(
+                                        '====================${confirmPassController.text}');
+                                  }
+                                },
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 6),
+                                  child: Container(
+                                    height: 60,
+                                    child: Center(
+                                      child: Text(
+                                        "تغيير",
+                                        style: TextStyle(fontSize: 20),
+                                      ),
                                     ),
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                        color: kMainColor,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                   ),
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                      color: kMainColor,
-                                      borderRadius: BorderRadius.circular(10)),
                                 ),
                               ),
                             ),
@@ -136,7 +179,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             children: [
               Image.asset(
                 'images/Frame2.png',
-                height: 150,
+                height: MediaQuery.of(context).size.height * 0.15,
                 width: 150,
               ),
               Text(
@@ -145,7 +188,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               ),
               SizedBox(height: 16.0),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).pushReplacementNamed(HomeScreen.id);
+                },
                 child: Container(
                   height: 50,
                   child: Center(

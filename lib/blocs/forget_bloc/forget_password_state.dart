@@ -18,3 +18,7 @@ final class LoaderState extends ForgetPasswordState {}
 final class CorrectVCode extends ForgetPasswordState {}
 
 final class WrongVCode extends ForgetPasswordState {}
+
+final class PasswordChanged extends ForgetPasswordState {}
+
+final class PasswordNotChanged extends ForgetPasswordState {}

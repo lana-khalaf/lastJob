@@ -133,6 +133,7 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
                   if (state is CorrectEmail) {
                     final prefs = await SharedPreferences.getInstance();
                     prefs.setString('vcode', state.vCode);
+                    prefs.setString('email', emailController.text);
                     Navigator.of(context).pushReplacementNamed(
                       CheckScreen.id,
                     );

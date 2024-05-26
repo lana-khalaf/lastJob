@@ -25,6 +25,7 @@ class _CheckScreenState extends State<CheckScreen> {
     (index) => FocusNode(),
   );
   final formkey = GlobalKey<FormState>();
+    
   int _seconds = 59;
   Timer? _timer;
   String inputVCode = '';

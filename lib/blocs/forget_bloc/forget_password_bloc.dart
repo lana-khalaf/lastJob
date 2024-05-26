@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_jobs_app/contents.dart';
+import 'package:flutter_jobs_app/helper/api.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,7 +17,9 @@ class ForgetPasswordBloc
     final String vcode;
     on<RestorePasswordEvent>(onRestorePassword);
     on<CheckVCodeEvent>(onCheckVCode);
+    on<ChangePassword>(onChangePassword);
   }
+
   onRestorePassword(
     RestorePasswordEvent event,
     Emitter<ForgetPasswordState> emit,
@@ -45,15 +49,53 @@ class ForgetPasswordBloc
     SharedPreferences prefs = await SharedPreferences.getInstance();
     print('============================shared${prefs.getString('vcode')}');
     print('============================event${event.vCode}');
-    String code= prefs.getString('vcode')!;
+    String code = prefs.getString('vcode')!;
     if (code == event.vCode) {
       print('============================Correct');
       emit(CorrectVCode());
-    }else{
+    } else {
       emit(WrongVCode());
     }
+  }
 
-    
+  onChangePassword(
+    ChangePassword event,
+    Emitter<ForgetPasswordState> emit,
+  ) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String code = prefs.getString('vcode')!;
+    String email = prefs.getString('email')!;
+    print('+++++++++++++++++++++++++++$code');
+    print('+++++++++++++++++++++++++++$email');
+    print('+++++++++++++++++++++++++++${event.newPass}');
+    print('+++++++++++++++++++++++++++${event.confirmPass}');
+    Api api = new Api();
+    // http.Response response = await http.post(
+    //   Uri.parse('$kBaseUrl/api/account/verifyresettedpassword?email=$email'),
+    //   body: {
+    //     'VerificationCode': code,
+    //     'Password': event.newPass,
+    //     'ConfirmPassword': event.confirmPass,
+    //   },
+    // );
+    // print(response.statusCode);
+    // print(response.body);
+    String response = await api.post(
+      url: '$kBaseUrl/api/account/verifyresettedpassword?email=$email',
+      body: {
+        'VerificationCode': code,
+        'Password': event.newPass,
+        'ConfirmPassword': event.confirmPass,
+      },
+    );
+
+    print(response);
+    if(response=='Password resetted Successfully..'){
+      emit(PasswordChanged());
+    }
+    else{
+       emit(PasswordNotChanged());
+    }
   }
 
   Future<String> post(
