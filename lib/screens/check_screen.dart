@@ -25,7 +25,7 @@ class _CheckScreenState extends State<CheckScreen> {
     (index) => FocusNode(),
   );
   final formkey = GlobalKey<FormState>();
-    
+
   int _seconds = 59;
   Timer? _timer;
   String inputVCode = '';
@@ -135,6 +135,10 @@ class _CheckScreenState extends State<CheckScreen> {
                           if (state is CorrectVCode) {
                             Navigator.of(context).pushReplacementNamed(
                               ChangePasswordScreen.id,
+                            );
+                          } else if (state is EmailVerify) {
+                            Navigator.of(context).pushReplacementNamed(
+                              HomeScreen.id,
                             );
                           } else if (state is WrongVCode) {
                             inputVCode = '';

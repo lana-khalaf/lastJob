@@ -22,3 +22,4 @@ final class WrongVCode extends ForgetPasswordState {}
 final class PasswordChanged extends ForgetPasswordState {}
 
 final class PasswordNotChanged extends ForgetPasswordState {}
+final class EmailVerify extends ForgetPasswordState {}

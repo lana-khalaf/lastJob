@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_jobs_app/Model/rigester_model.dart';
 import 'package:flutter_jobs_app/blocs/register_bloc.dart';
+import 'package:flutter_jobs_app/config.dart';
+import 'package:flutter_jobs_app/screens/check_screen.dart';
 import 'package:flutter_jobs_app/views/profile.dart';
 import 'package:flutter_jobs_app/widgets/custom%20text.dart';
 import 'package:flutter_jobs_app/widgets/custom_buttom.dart';
 import 'package:flutter_jobs_app/widgets/custom_textField.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterPage extends StatefulWidget {
   RegisterPage({super.key});
-
+  static String id = 'RegisterScreen';
   @override
   State<RegisterPage> createState() => _RegisterPageState();
 }
@@ -246,28 +249,22 @@ class _RegisterPageState extends State<RegisterPage> {
                 Center(
                   child: BlocListener<RegisterBloc, RegisterState>(
                     listener: (context, state) {
-                     if(state is RegisterInitial){
-  print("initial page");
- 
-}
-else if(state is Success){
-  print("success page");
-   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-          return  Profile();
-          }        
-          ));
-}
-else if(state is Loading){
-  print("loading");
-}
-else if (state is Error){
-ScaffoldMessenger.of(context)                                    .showSnackBar(new SnackBar(
-                                  content: Text(state.errorMessage),
-                                ));
-}
-else{
-  print("else");
-}  
+                      if (state is RegisterInitial) {
+                        print("initial page");
+                      } else if (state is Success) {
+                        print("success page");
+
+                        Navigator.of(context)
+                            .pushReplacementNamed(CheckScreen.id);
+                      } else if (state is Loading) {
+                        print("loading");
+                      } else if (state is Error) {
+                        ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
+                          content: Text(state.errorMessage),
+                        ));
+                      } else {
+                        print("else");
+                      }
                     },
                     child: CustomButton(
                       text: " انشاء حساب جديد",

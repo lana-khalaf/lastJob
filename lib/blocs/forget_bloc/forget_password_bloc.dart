@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_jobs_app/config.dart';
 import 'package:flutter_jobs_app/contents.dart';
 import 'package:flutter_jobs_app/helper/api.dart';
 import 'package:meta/meta.dart';
@@ -50,9 +51,13 @@ class ForgetPasswordBloc
     print('============================shared${prefs.getString('vcode')}');
     print('============================event${event.vCode}');
     String code = prefs.getString('vcode')!;
-    if (code == event.vCode) {
+    String verificationCode =
+        config.get<SharedPreferences>().getString("verificationCode")!;
+    if (event.vCode == code) {
       print('============================Correct');
       emit(CorrectVCode());
+    } else if (event.vCode == verificationCode) {
+      emit(EmailVerify());
     } else {
       emit(WrongVCode());
     }
@@ -90,11 +95,10 @@ class ForgetPasswordBloc
     );
 
     print(response);
-    if(response=='Password resetted Successfully..'){
+    if (response == 'Password resetted Successfully..') {
       emit(PasswordChanged());
-    }
-    else{
-       emit(PasswordNotChanged());
+    } else {
+      emit(PasswordNotChanged());
     }
   }
 

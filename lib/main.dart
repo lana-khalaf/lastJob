@@ -14,6 +14,7 @@ import 'package:flutter_jobs_app/screens/roadmap_screen.dart';
 import 'package:flutter_jobs_app/screens/schedule_screen.dart';
 import 'package:flutter_jobs_app/screens/search%20screen.dart';
 import 'package:flutter_jobs_app/screens/step_road_map_screen.dart';
+import 'package:flutter_jobs_app/views/register_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
@@ -35,7 +36,6 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        
         debugShowCheckedModeBanner: false,
         themeMode: ThemeMode.dark,
         theme: ThemeData(
@@ -59,6 +59,7 @@ class MyApp extends StatelessWidget {
           RoadMapScreen.id: (context) => RoadMapScreen(),
           StepRoadMapScreen.id: (context) => StepRoadMapScreen(),
           ForgetPassPage().id: (context) => ForgetPassPage(),
+          RegisterPage.id: (context) => RegisterPage(),
         },
         // home: const MainScreen(),
       ),
