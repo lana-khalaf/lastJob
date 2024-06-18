@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_jobs_app/Model/skill.dart';
 import 'package:flutter_jobs_app/widgets/job_container.dart';
 
 class SearchResult extends StatelessWidget {
    SearchResult({super.key, required this.test});
-List test;
+List <Skill>test;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -33,7 +34,7 @@ Expanded(
   
   
   
-                        job_container(tist: test)
+                        job_container(tist: test, index:  index,)
   
   
   

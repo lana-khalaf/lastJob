@@ -1,13 +1,15 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_jobs_app/Model/skill.dart';
 import 'package:flutter_jobs_app/widgets/custom%20text.dart';
 import 'package:flutter_jobs_app/widgets/custom_searchFeild.dart';
 import 'package:flutter_jobs_app/widgets/job_container.dart';
 
-class CommmunityProfile extends StatelessWidget {
-   CommmunityProfile({super.key});
-List <String> test =[
-      "UI","UX", "PLA", "PLA", "PLA","PLA"
+class CompanyProfile extends StatelessWidget {
+   CompanyProfile({super.key});
+   static String id = 'CompanyProfile';
+List <Skill> test =[
+   Skill(id: 12, userId: 231, title: "klj", startedAt: "kjk")
       ];
   @override
   Widget build(BuildContext context) {
@@ -191,7 +193,7 @@ SizedBox(
               child: ListView.builder(itemBuilder:  
               (context, index) => Padding(
                 padding: const EdgeInsets.only(right: 14,left:14),
-                child: job_container(tist: test),
+                child: job_container(tist: test, index: index,),
               ),
               itemCount: test.length,
               ),

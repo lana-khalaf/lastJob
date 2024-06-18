@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_jobs_app/Model/skill.dart';
 
-class job_container extends StatelessWidget {
-   job_container({
+class Education_container extends StatelessWidget {
+   Education_container({
     super.key,
-    required this.tist,
-    required this.index
+    required this.educationTist,
+   required this.index
   });
-List tist;
-num index;
+List educationTist;
+ int index;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,7 +39,7 @@ num index;
               width: 45,
               height: 45,),
               SizedBox(width: 20,),
-              Column(mainAxisAlignment: MainAxisAlignment.center,children: [ Text(tist[0].title,
+              Column(mainAxisAlignment: MainAxisAlignment.center,children: [ Text(educationTist[index].major,
           style: TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 14,// غيرت  
@@ -47,7 +47,7 @@ num index;
                     fontFamily: "Cairo",
                     
           ),),
-          Text(tist[0].body ?? "",
+          Text(educationTist[index].specialization ,
           style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 13,
@@ -55,7 +55,7 @@ num index;
                         ),)
           ],),
           SizedBox(width: 55,),
-           Column(mainAxisAlignment: MainAxisAlignment.center,children: [ Text(tist[0].startedAt,
+           Column(mainAxisAlignment: MainAxisAlignment.center,children: [ Text(educationTist[index].startedAt,
           style: TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 12,// غيرت 
@@ -63,7 +63,7 @@ num index;
                     fontFamily: "Cairo",
                     
           ),),
-          Text(tist[0].endedAt??"",
+          Text(educationTist[index].endedAt??"",
           style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 13,

@@ -14,8 +14,19 @@ import 'package:flutter_jobs_app/screens/roadmap_screen.dart';
 import 'package:flutter_jobs_app/screens/schedule_screen.dart';
 import 'package:flutter_jobs_app/screens/search%20screen.dart';
 import 'package:flutter_jobs_app/screens/step_road_map_screen.dart';
+import 'package:flutter_jobs_app/service/login.dart';
+import 'package:flutter_jobs_app/theme/dark_theme.dart';
+import 'package:flutter_jobs_app/theme/light_theme.dart';
+import 'package:flutter_jobs_app/views/community.dart';
+import 'package:flutter_jobs_app/views/community_profile.dart';
+import 'package:flutter_jobs_app/views/login_page.dart';
+import 'package:flutter_jobs_app/views/profile.dart';
+
 import 'package:flutter_jobs_app/views/register_page.dart';
+import 'package:flutter_jobs_app/views/see_all.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,18 +48,16 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        themeMode: ThemeMode.dark,
-        theme: ThemeData(
-          textSelectionTheme: TextSelectionThemeData(
-            cursorColor: kMainColor,
-            // selectionColor: kMainColor,
-            selectionHandleColor: kMainColor,
-          ),
-          colorScheme: ColorScheme.fromSeed(seedColor: kMainColor),
-          useMaterial3: true,
-        ),
-        initialRoute: ForgetPassPage().id,
+          theme: lightTheme,
+      darkTheme: darkTheme,
+      
+        initialRoute: Profile.id,
         routes: {
+          SeeAll.id:(context) => SeeAll(title: 'lol', result: [],),
+          LoginPage.id:(context) => LoginPage(),
+          Profile.id:(context) => Profile(),
+          CommunityPage.id:(context) => CommunityPage(),
+          CompanyProfile.id:(context) => CompanyProfile(),
           HomeScreen.id: (context) => HomeScreen(),
           CheckScreen.id: (context) => CheckScreen(),
           ChangePasswordScreen.id: (context) => ChangePasswordScreen(),

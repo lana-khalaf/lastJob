@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_jobs_app/Model/skill.dart';
 import 'package:flutter_jobs_app/widgets/job_container.dart';
 import 'package:flutter_jobs_app/widgets/search_result.dart';
 
@@ -11,8 +12,8 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
     TextEditingController textField = TextEditingController();
-    List <String> test =[
-      // "UI","UX", "PLA", "PLA", "PLA","PLA"
+List <Skill> test =[
+   Skill(id: 12, userId: 231, title: "klj", startedAt: "kjk")
       ];
 
   @override
@@ -173,7 +174,7 @@ class _SearchPageState extends State<SearchPage> {
                 
                       ),),
          ),
-                   job_container(tist: test)
+                   job_container(tist: test, index: 0,)
                      ],
                      ),
            

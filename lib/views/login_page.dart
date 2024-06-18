@@ -9,7 +9,7 @@ import 'package:flutter_jobs_app/widgets/custom_textField.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
-
+  static String id = 'login';
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
