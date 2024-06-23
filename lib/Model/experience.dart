@@ -7,8 +7,8 @@ class Experience {
   String title;
   String? body;
   String? excerpt;
-      String startedAt;
-      String? endedAt;
+  String startedAt;
+  String? endedAt;
   Experience({
     required this.id,
     required this.userId,
