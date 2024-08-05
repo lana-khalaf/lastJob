@@ -1,17 +1,20 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_jobs_app/views/login_page.dart';
 import 'package:flutter_jobs_app/widgets/custom_buttom.dart';
 
 class SecondWelcomePage extends StatelessWidget {
   const SecondWelcomePage({super.key});
-
+static String id = 'SecondWelcomePage';
   @override
   Widget build(BuildContext context) {
     return   Scaffold(
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image:  Theme.of(context).brightness == Brightness.light ? AssetImage('assets/images/light.bg.png') : AssetImage('assets/images/dark_bg.png'),
+            image:Theme.of(context).brightness == Brightness.light
+                  ? AssetImage('assets/images/Mask Group (3).png')
+                  : AssetImage('assets/images/Home (3).jpg'),
             fit: BoxFit.cover,
           ),
         ),
@@ -19,7 +22,7 @@ class SecondWelcomePage extends StatelessWidget {
         children: [
           Container(
       height: 386,
-      width: 430,
+      width: double.infinity,
     
       decoration: BoxDecoration(
          borderRadius: BorderRadius.only(
@@ -36,8 +39,7 @@ class SecondWelcomePage extends StatelessWidget {
     ),
 Padding(
   padding: const EdgeInsets.only(top: 40, bottom: 10),
-  child:   Text("قم باستخدام التطبيق الان",
-  
+  child:   Text("Use".tr(),
   textAlign: TextAlign.center,
   
   style: TextStyle(
@@ -54,18 +56,18 @@ Padding(
   
   ),),
 ),
-Text("هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة",
-textAlign: TextAlign.center,
-style: TextStyle(
-  color: Theme.of(context).colorScheme.primary,
-     fontWeight: FontWeight.w400,
+// Text("Start".tr(),
+// textAlign: TextAlign.center,
+// style: TextStyle(
+//   color: Theme.of(context).colorScheme.primary,
+//      fontWeight: FontWeight.w400,
   
-    fontSize: 14,// كان 16
-    // height: 11,
+//     fontSize: 14,// كان 16
+//     // height: 11,
   
-    fontFamily: "Cairo",
+//     fontFamily: "Cairo",
 
-),),
+// ),),
 Padding(
   padding: const EdgeInsets.only(top: 28, bottom: 79),
   child:   Row(
@@ -171,7 +173,7 @@ Padding(
 
 Padding(
   padding: const EdgeInsets.only(top: 46,bottom: 15, left: 16, right: 16 ),
-   child:   CustomButton(text: "ابدا الآن", colorText: Theme.of(context).colorScheme.onSecondary, press: (){
+   child:   CustomButton(text: "Start".tr(), colorText: Theme.of(context).colorScheme.onSecondary, press: (){
   
       Navigator.pushReplacement(context,
                                       MaterialPageRoute(builder: (context) {

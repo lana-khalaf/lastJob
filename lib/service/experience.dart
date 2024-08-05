@@ -22,7 +22,7 @@ Future<List<Experience>> getExperience(String userId,String token) async {
 
   try {
     // إرسال الطلب
-    Response response = await dio.get("$kBaseUrl/api/user/experience/$userId" ,
+    Response response = await dio.get("$kBaseUrl/api/experience/$userId" ,
     options: Options(
         headers: {
           'Authorization': 'Bearer $token',

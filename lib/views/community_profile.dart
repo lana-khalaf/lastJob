@@ -17,7 +17,9 @@ List <Skill> test =[
       body: Container(
          decoration: BoxDecoration(
           image: DecorationImage(
-            image:  Theme.of(context).brightness == Brightness.light ? AssetImage('assets/images/Mask Group (1).png') : AssetImage('assets/images/dark_bg.png'),
+            image:  Theme.of(context).brightness == Brightness.light
+                   ? AssetImage('assets/images/Mask Group (3).png')
+                    : AssetImage('assets/images/Home (3).jpg'),
             fit: BoxFit.cover,
           ),      
         ),
@@ -30,14 +32,16 @@ List <Skill> test =[
              
                 children: [
                   Padding(     padding: const EdgeInsets.only( top: 19),
-                  child: Image.asset("assets/images/back.png")),
+                  child:Theme.of(context).brightness == Brightness.light
+                   ? Image.asset('assets/images/back.png')
+                    : Image.asset('assets/images/Vector (25).png')),
                     Padding(
                          padding: const EdgeInsets.only( top: 19,left: 140),
                       child: Text("Google Jobs",
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 16,
-                                  color: Theme.of(context).colorScheme.onSecondaryContainer ,
+                                  color: Theme.of(context).colorScheme.primary ,
                               fontFamily: "Poppins",
                               
                                 ),),
@@ -62,11 +66,11 @@ List <Skill> test =[
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomText(family: "Poppins", color:  Theme.of(context).colorScheme.onSecondaryContainer , size: 15, text: "140", weight: FontWeight.w600),
+                    CustomText(family: "Poppins", color:  Theme.of(context).colorScheme.primary , size: 15, text: "140", weight: FontWeight.w600),
                     SizedBox(width: 50,),
-                  CustomText(family: "Poppins", color:  Theme.of(context).colorScheme.onSecondaryContainer , size: 15, text: "Google", weight: FontWeight.w600) ,
+                  CustomText(family: "Poppins", color:  Theme.of(context).colorScheme.primary , size: 15, text: "Google", weight: FontWeight.w600) ,
                        SizedBox(width: 50,),
-                      CustomText(family: "Poppins", color:  Theme.of(context).colorScheme.onSecondaryContainer , size: 15, text: "176", weight: FontWeight.w600),
+                      CustomText(family: "Poppins", color:  Theme.of(context).colorScheme.primary , size: 15, text: "176", weight: FontWeight.w600),
                   
                   ],
                 ),
@@ -113,7 +117,7 @@ List <Skill> test =[
           SizedBox(width: 10,),
             Column(
             children: [
-              CustomText(family: "Poppins", color:  Theme.of(context).colorScheme.onSecondaryContainer , size: 16, text: "Gala Convention Center", weight: FontWeight.w400),
+              CustomText(family: "Poppins", color:  Theme.of(context).colorScheme.primary , size: 16, text: "Gala Convention Center", weight: FontWeight.w400),
                      CustomText(family: "Poppins", color:  Color(0xff747688) , size: 12, text: "36 Guild Street London, UK ", weight: FontWeight.w400)
             ],
             )
@@ -134,7 +138,7 @@ Padding(
   
                        children: [
   
-                         CustomSearchTextField(color:Color(0x9B3B4758),  hintText: "Search for Community "),
+                         CustomSearchTextField(color:Color(0x9B3B4758),  hintText: "Search for Community ", onChanged: (value) {  },),
   
                          Container(
   

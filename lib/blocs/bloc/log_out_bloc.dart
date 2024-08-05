@@ -13,9 +13,14 @@ class LogOutBloc extends Bloc<LogOutEvent, LogOutState> {
     emit(Loading());
         print("loadingg");
       // String result =await login(event.usermodel);
+       SharedPreferences prefs = await SharedPreferences.getInstance();
       dynamic token=config.get<SharedPreferences>().get("Token")!;
+      print(" shooo $token");
+      //  dynamic profilePic=config.get<SharedPreferences>().get("profile_picture")!;
       dynamic result =await logOut(token);
         if (result is String && result.isNotEmpty) {
+          await prefs.remove('profile_picture');
+           await prefs.remove("Token");
         emit(Success());
         print("successs");
       } else if (result == "") {

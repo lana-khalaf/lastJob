@@ -27,6 +27,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
            emit(Success(Token: result));
         config.get<SharedPreferences>().setString("Token", result);
           print("successs");
+          
         }
        else{
         emit (Error());

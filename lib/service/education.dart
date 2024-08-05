@@ -82,7 +82,7 @@ Future<List<Education>> getEducation(String userId, String token) async {
   try {
     // إرسال الطلب
     Response response = await dio.get(
-      "$kBaseUrl/api/user/education/$userId",
+      "$kBaseUrl/api/education/$userId",
       options: Options(
         headers: {
           'Authorization': 'Bearer $token',

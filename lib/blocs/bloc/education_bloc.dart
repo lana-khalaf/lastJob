@@ -21,6 +21,7 @@ class EducationBloc extends Bloc<EducationEvent, EducationState> {
   dynamic result =await getEducation(userId,token);
       
       if(result is List<Education>){
+        print("success bloc");
         emit(EducationSuccess( educations: result));
       }
       else{

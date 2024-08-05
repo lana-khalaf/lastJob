@@ -22,7 +22,7 @@ Future<List<Skill>> getSkills(String userId,String token) async {
 
   try {
     // إرسال الطلب
-    Response response = await dio.get("$kBaseUrl/api/user/skill/$userId" ,
+    Response response = await dio.get("$kBaseUrl/api/skill/$userId" ,
     options: Options(
         headers: {
           'Authorization': 'Bearer $token',

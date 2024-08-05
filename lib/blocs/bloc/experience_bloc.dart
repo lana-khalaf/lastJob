@@ -26,6 +26,7 @@ class ExperienceBloc extends Bloc<ExperienceEvent, ExperienceState> {
   dynamic result =await getExperience(userId,token);
       
       if(result is List<Experience>){
+        print("success bloc");
         emit(ExperienceSuccess( experiences: result));
       }
       else{

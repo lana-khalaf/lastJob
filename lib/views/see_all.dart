@@ -14,9 +14,9 @@ class SeeAll extends StatelessWidget {
 body: Container(
       decoration: BoxDecoration(
               image: DecorationImage(
-                image: Theme.of(context).brightness == Brightness.light
-                    ? AssetImage('assets/images/light.bg.png')
-                    : AssetImage('assets/images/dark_bg.png'),
+                image:  Theme.of(context).brightness == Brightness.light
+                   ? AssetImage('assets/images/Mask Group (3).png')
+                    : AssetImage('assets/images/Home (3).jpg'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -32,21 +32,23 @@ body: Container(
                 ),
                 child: Row(
                   children: [
-                    InkWell(child:Image.asset("assets/images/Vector (8).png"), onTap: (){},),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 125),
-                      child: Text(title,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,// غيرت 
-                        color: Theme.of(context).colorScheme.onTertiary,
-                                fontFamily:"Poppins",
-                                
-                      ),),
-                    ),
-                    SizedBox(
-                      width: 115,
-                    ),
+                    InkWell(
+                      child:Theme.of(context).brightness == Brightness.light
+                   ? Image.asset('assets/images/back.png')
+                    : Image.asset('assets/images/Vector (25).png'), onTap: (){  Navigator.pop(context);},),
+                        Spacer(),
+                    Text(title,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 21,// غيرت 
+                      color: Theme.of(context).colorScheme.primary,
+                              fontFamily:"Poppins",
+                              
+                    ),),
+                        Spacer(),
+                    // SizedBox(
+                    //   width: 115,
+                    // ),
 
                   ],
                 ),
@@ -54,7 +56,7 @@ body: Container(
               ),
                 Expanded(
                  child:   Padding(
-                 padding: const EdgeInsets.only(left: 26, right: 26),
+                 padding: const EdgeInsets.only(left: 26, right: 26, top: 30),
                    child: ListView.builder(               
                           itemCount: result.length,
 
@@ -62,7 +64,7 @@ body: Container(
                       Builder(builder: (context){
                               if (result is List<Education>) {
                                return Padding(
-                                 padding: const EdgeInsets.all(8.0),
+                                 padding: const EdgeInsets.only(top: 20),
                                  child: Education_container(educationTist: result,index: index,),
                                );
                               

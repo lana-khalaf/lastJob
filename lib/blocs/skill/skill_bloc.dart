@@ -22,6 +22,7 @@ class SkillBloc extends Bloc<SkillEvent, SkillState> {
   dynamic result =await getSkills(userId,token);
       
       if(result is List<Skill>){
+        print("success bloc");
         emit(Success( skills: result));
       }
       else{

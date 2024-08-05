@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_jobs_app/Model/Job.dart';
 import 'package:flutter_jobs_app/widgets/custom%20text.dart';
 import 'package:flutter_jobs_app/widgets/custom_buttom.dart';
 
@@ -11,7 +12,7 @@ class CustomApplication extends StatelessWidget {
     this.text,
     this.textColor
   });
-List tist;
+Job tist;
 Color? buttonColor ;
 Color? textColor;
     String buttontext;
@@ -30,7 +31,7 @@ Color? textColor;
             height: 140,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Theme.of(context).colorScheme.onPrimaryContainer,
+              color: Theme.of(context).colorScheme.onInverseSurface,
             ),
           
             child: Padding(
@@ -41,23 +42,31 @@ Color? textColor;
                   // SizedBox(width: 20,),
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
-                    child: Image.asset("assets/images/image 8.png",
-                    width: 45,
-                    height: 45,),
+                    child:  tist.job.owner.picture != null
+                        ? Image.network(
+                            tist.job.owner.picture!,
+                            width: 45,
+                            height: 45,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Icon(Icons.error, size: 45);
+                            },
+                          )
+                        : Icon(Icons.account_circle, size: 45,color: Theme.of(context).colorScheme.onErrorContainer,),
+                  
                   ),
                   SizedBox(width: 20,),
                   Column(mainAxisAlignment: MainAxisAlignment.center,children: [
                     // SizedBox(height: 20,),
-                     Text("Product Manager",
+                     Text(tist.job.title,
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 14,// غيرت  
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.onErrorContainer,
                         fontFamily: "Cairo",
                         
               ),),
               SizedBox(height: 4,),
-              Text("Beats",
+              Text(tist.job.owner.name,
               style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 13,
@@ -73,23 +82,35 @@ Color? textColor;
                                   )
               ],),
               SizedBox(width: 55,),
-               Column(mainAxisAlignment: MainAxisAlignment.center,children: [ Text("\$84,000/y",
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 12,// غيرت 
-                color: Theme.of(context).colorScheme.primary,
-                        fontFamily: "Cairo",
-                        
-              ),),
+               Column(mainAxisAlignment: MainAxisAlignment.center,children: [ Row(
+                 children: [
+                   Text(tist.job.minmumSalary.toString(),
+                                 style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12,// غيرت 
+                    color: Theme.of(context).colorScheme.onErrorContainer,
+                            fontFamily: "Cairo",
+                            
+                                 ),),
+                                  Text("/${tist.job.maximumSalary.toString()}",
+                                 style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12,// غيرت 
+                    color: Theme.of(context).colorScheme.primary,
+                            fontFamily: "Cairo",
+                            
+                                 ),),
+                 ],
+               ),
               SizedBox(height: 4,),
-              Text("Florida, US",
+              Text(tist.job.owner.country.toString(),
               style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 13,
                               color: Theme.of(context).colorScheme.onPrimary,
                             ),),
                             SizedBox(height: 31,),
-                               CustomText(family: "Poppins", color:Theme.of(context).colorScheme.onTertiary , size: 12, text: "Full-Time", weight: FontWeight.w500)
+                               CustomText(family: "Poppins", color:Theme.of(context).colorScheme.onTertiary , size: 12, text: tist.job.jobType.name, weight: FontWeight.w500)
                                              
               ],)
                 ],

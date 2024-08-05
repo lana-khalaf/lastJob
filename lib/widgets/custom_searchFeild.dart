@@ -7,14 +7,15 @@ class CustomSearchTextField extends StatelessWidget {
     required this.color,
     required this.hintText,
     this.borderRadius = 14,
-    this.maxLines = 1,
+    this.maxLines = 1, 
+    required this.onChanged,
   }) : super(key: key);
 
   final Color color;
   final String hintText;
   final double borderRadius;
   final int maxLines;
-
+final Null Function(dynamic value) onChanged;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,7 +33,7 @@ class CustomSearchTextField extends StatelessWidget {
         ],
       ),
       child: TextField(
-        
+        onChanged: onChanged,
         maxLines: maxLines,
         cursorColor: Color.fromRGBO(53, 104, 153, 1),
         style: TextStyle(
